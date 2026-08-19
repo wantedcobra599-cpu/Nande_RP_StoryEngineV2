@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "reactflow": ["./lib/reactflow-compat"]
     }
   },
   "include": [
