@@ -1,6 +1,6 @@
 'use client'
 
-import { Handle, Position } from 'reactflow'
+import { Handle, Position } from '@xyflow/react'
 import { User, Settings, MapPin, Camera, MessageSquare, Clock3 } from 'lucide-react'
 
 export default function CharacterSceneNode({ id, data, selected }: any) {
