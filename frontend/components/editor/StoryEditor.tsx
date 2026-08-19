@@ -1,8 +1,8 @@
 'use client'
 
 import { useRef, useCallback, useEffect, useState } from 'react'
-import ReactFlow, { Background, Controls, MiniMap, ReactFlowProvider, Panel } from 'reactflow'
-import 'reactflow/dist/style.css'
+import { ReactFlow, Background, Controls, MiniMap, ReactFlowProvider, Panel } from '@xyflow/react'
+import '@xyflow/react/dist/style.css'
 import { Maximize2 } from 'lucide-react'
 
 import { useStoryStore } from '../../store/useStoryStore'
