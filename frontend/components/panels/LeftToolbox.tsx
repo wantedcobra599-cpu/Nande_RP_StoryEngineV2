@@ -1,7 +1,7 @@
 'use client'
 
-import { Plus, User, GitBranch, Search, MapPin, Clapperboard, Sparkles } from 'lucide-react'
-import { useReactFlow } from 'reactflow'
+import { Plus, User, GitBranch, Search, Clapperboard, Sparkles } from 'lucide-react'
+import { useReactFlow } from '@xyflow/react'
 import { useStoryStore } from '../../store/useStoryStore'
 import { useCharacterCatalog } from '../../store/useCharacterCatalog'
 import { useState } from 'react'
