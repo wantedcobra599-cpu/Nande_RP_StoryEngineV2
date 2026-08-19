@@ -7,12 +7,18 @@ import { useCharacterCatalog } from '../../store/useCharacterCatalog'
 import { useState } from 'react'
 
 export default function LeftToolbox() {
-  const { addNode, isPresenting } = useStoryStore(); const { project } = useReactFlow(); const characters=useCharacterCatalog(); const [query,setQuery]=useState(''); const [section,setSection]=useState<'characters'|'tools'>('characters')
-  const filtered=characters.filter(c=>c.status!=='dead'&&c.name.toLowerCase().includes(query.toLowerCase()))
-  const center=()=>project({x:(window.innerWidth/2)-300,y:(window.innerHeight/2)-100})
-  const addCharacter=(c:any)=>addNode('characterScene',center(),{character:c.name,color:c.color,title:`${c.name}'s Scene`,characterId:c.id})
-  const addChoice=()=>addNode('choice',center(),{character:'System',color:'#ec4899',title:'Decision Point',options:['Path A','Path B']})
-  const addScene=()=>addNode('characterScene',center(),{character:'System',color:'#ef4444',title:'New Scene'})
+  const { addNode, isPresenting } = useStoryStore()
+  const { screenToFlowPosition } = useReactFlow()
+  const characters = useCharacterCatalog()
+  const [query, setQuery] = useState('')
+  const [section, setSection] = useState<'characters'|'tools'>('characters')
+
+  const filtered = characters.filter(c => c.status !== 'dead' && c.name.toLowerCase().includes(query.toLowerCase()))
+  const center = () => screenToFlowPosition({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
+  const addCharacter = (c: any) => addNode('characterScene', center(), { character: c.name, color: c.color, title: `${c.name}'s Scene`, characterId: c.id })
+  const addChoice = () => addNode('choice', center(), { character: 'System', color: '#ec4899', title: 'Decision Point', options: ['Path A', 'Path B'] })
+  const addScene = () => addNode('characterScene', center(), { character: 'System', color: '#ef4444', title: 'New Scene' })
+
   return <aside className={`w-64 border-r border-white/5 bg-[#0d0d0d] flex flex-col z-20 relative transition-all duration-500 ${isPresenting?'-translate-x-full opacity-0 invisible':'translate-x-0 opacity-100 visible'}`}>
     <div className="border-b border-white/5 p-4"><div className="mb-4 flex items-center gap-2 text-zinc-500"><Plus size={14}/><h2 className="text-[10px] font-bold uppercase tracking-widest">Create Arc Elements</h2></div><div className="grid grid-cols-2 gap-1 rounded-xl bg-black/30 p-1"><button onClick={()=>setSection('characters')} className={`rounded-lg py-2 text-[8px] font-black uppercase ${section==='characters'?'bg-white text-black':'text-zinc-500'}`}>Characters</button><button onClick={()=>setSection('tools')} className={`rounded-lg py-2 text-[8px] font-black uppercase ${section==='tools'?'bg-white text-black':'text-zinc-500'}`}>Elements</button></div></div>
     <div className="flex-1 overflow-y-auto p-4 scrollbar-hide">
